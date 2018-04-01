@@ -67,6 +67,14 @@ final class LiveViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         logger.info("viewWillAppear")
         super.viewWillAppear(animated)
+        if let bitrate = Preference.defaultInstance.bitrate {
+            videoBitrateSlider?.value = bitrate
+            rtmpStream.videoSettings = [
+                "bitrate": bitrate * 1024,
+                "width": 720,
+                "height": 1280
+            ]
+        }
         rtmpStream.attachAudio(AVCaptureDevice.default(for: .audio)) { error in
             logger.warn(error.description)
         }

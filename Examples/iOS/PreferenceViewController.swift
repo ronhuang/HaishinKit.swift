@@ -25,6 +25,7 @@ extension PreferenceViewController: UITextFieldDelegate {
         if streamNameField == textField {
             Preference.defaultInstance.streamName = textField.text
         }
+        Preference.defaultInstance.bitrate = 800
         textField.resignFirstResponder()
         return true
     }
